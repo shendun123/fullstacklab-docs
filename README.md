@@ -9,20 +9,20 @@
 
 <div class="doc-grid">
   <div class="doc-card">
-    <div class="num">1</div>
-    <h3>购买与使用说明</h3>
+    <div class="num"></div>
+    <h3>一、购买与使用说明</h3>
     <p>了解购买前注意事项、额度、倍率、扣费和基础规则。</p>
   </div>
 
   <div class="doc-card">
-    <div class="num">2</div>
-    <h3>工具配置教程</h3>
+    <div class="num"></div>
+    <h3>二、工具配置教程</h3>
     <p>通过 ccswitch、Cherry Studio、Claude Code、Codex 快速完成配置。</p>
   </div>
 
   <div class="doc-card">
-    <div class="num">3</div>
-    <h3>接口调用文档</h3>
+    <div class="num"></div>
+    <h3>三、接口调用文档</h3>
     <p>支持 OpenAI、Anthropic、Gemini 等协议的接口说明和示例。</p>
   </div>
 </div>
