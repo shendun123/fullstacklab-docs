@@ -18,13 +18,11 @@
       --text-body: #334155;
       --cyan: #38bdf8;
       --blue: #2563eb;
-      --border: #dbe7f5;
       --shadow: 0 20px 55px rgba(15, 23, 42, 0.08);
       --glow: 0 0 30px rgba(56, 189, 248, 0.24);
     }
 
-    html,
-    body {
+    html, body {
       margin: 0;
       background:
         radial-gradient(circle at 86% 4%, rgba(56, 189, 248, 0.14), transparent 28%),
@@ -40,7 +38,7 @@
 
     .sidebar {
       width: 312px;
-      padding: 28px 18px 22px;
+      padding: 38px 18px 22px !important;
       background:
         radial-gradient(circle at 18% 0%, rgba(56, 189, 248, 0.26), transparent 28%),
         radial-gradient(circle at 100% 100%, rgba(124, 58, 237, 0.20), transparent 30%),
@@ -67,7 +65,7 @@
     .sidebar h1 {
       position: relative;
       z-index: 3;
-      margin: 0 0 18px;
+      margin: 0 0 20px !important;
       padding: 20px 16px;
       border-radius: 20px;
       background:
@@ -451,7 +449,7 @@
     }
 
     @media screen and (max-width: 768px) {
-      .sidebar { width: 282px; padding-top: 26px; }
+      .sidebar { width: 282px; padding-top: 34px !important; }
       .content { left: 0; padding-top: 0; }
       .content::before { left: 0; }
       .markdown-section { padding: 70px 20px 64px; }
@@ -466,7 +464,7 @@
 <body>
   <div class="lang-switch" id="langSwitch">
     <a href="#/" data-lang="zh">中文</a>
-    <a href="#/en/" data-lang="en">EN</a>
+    <a href="#/en/README.md" data-lang="en">EN</a>
   </div>
 
   <div id="app">加载中...</div>
@@ -481,7 +479,8 @@
       routerMode: "hash",
       auto2top: true,
       alias: {
-        "/en/.*/_sidebar.md": "/en/_sidebar.md",
+        "/en/_sidebar.md": "/en/_sidebar.md",
+        "/en/(.*)/_sidebar.md": "/en/_sidebar.md",
         "/.*/_sidebar.md": "/_sidebar.md"
       },
       search: {
