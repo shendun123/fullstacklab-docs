@@ -48,7 +48,6 @@
       overflow-x: hidden;
     }
 
-    /* 左侧目录：保留深色科技感 */
     .sidebar {
       width: 312px;
       padding: 22px 18px;
@@ -75,9 +74,9 @@
       mask-image: linear-gradient(180deg, rgba(0,0,0,0.90), rgba(0,0,0,0.24));
     }
 
-    /* 标题固定在最上方 */
     .sidebar h1 {
       position: relative;
+      z-index: 3;
       margin: 0 0 12px;
       padding: 20px 16px;
       border-radius: 20px;
@@ -110,7 +109,6 @@
       letter-spacing: 0.04em;
     }
 
-    /* 搜索框放在“全栈实验室操作文档”下边 */
     .search {
       margin: 0 0 20px;
       padding: 0;
@@ -195,7 +193,6 @@
       box-shadow: 0 14px 34px rgba(37, 99, 235, 0.32);
     }
 
-    /* 正文区域：去掉深色背景，改为浅色高级背景 */
     .content {
       left: 312px;
       min-height: 100vh;
@@ -613,8 +610,32 @@
       });
     }
 
-    window.addEventListener("hashchange", updateLangSwitch);
-    window.addEventListener("load", updateLangSwitch);
+    function fixSidebarOrder() {
+      var sidebar = document.querySelector(".sidebar");
+      var title = document.querySelector(".sidebar h1");
+      var search = document.querySelector(".sidebar .search");
+
+      if (sidebar && title && search && title.compareDocumentPosition(search) & Node.DOCUMENT_POSITION_PRECEDING) {
+        sidebar.insertBefore(title, search);
+      }
+    }
+
+    window.addEventListener("hashchange", function() {
+      updateLangSwitch();
+      setTimeout(fixSidebarOrder, 50);
+    });
+
+    window.addEventListener("load", function() {
+      updateLangSwitch();
+      fixSidebarOrder();
+
+      var count = 0;
+      var timer = setInterval(function() {
+        fixSidebarOrder();
+        count += 1;
+        if (count > 20) clearInterval(timer);
+      }, 150);
+    });
   </script>
 
   <script src="https://cdn.jsdelivr.net/npm/docsify@4"></script>
