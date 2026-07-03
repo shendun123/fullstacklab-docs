@@ -13,9 +13,10 @@
   - [记忆文件说明](07_记忆文件说明.md)
   - [知识时间测试说明](08_知识时间测试说明.md)
 
-- 帮助与接口
+- 常见问题
   - [常见问题](09_常见问题.md)
-  - [图像和视频接口使用指南](09_01_图像和视频接口使用指南.md)
+
+- 接口文档
   - [接口文档总览](10_接口文档.md)
   - [OpenAI Chat Completions](10_01_OpenAI_ChatCompletions.md)
   - [OpenAI Responses API](10_02_OpenAI_Responses.md)

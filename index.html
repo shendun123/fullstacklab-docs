@@ -9,39 +9,30 @@
   <style>
     :root {
       --theme-color: #38bdf8;
-
-      --page-bg: #eef4ff;
       --sidebar-bg: #08111f;
       --sidebar-bg-2: #0f1d33;
-
-      --card-bg: rgba(255, 255, 255, 0.92);
-      --card-border: rgba(56, 189, 248, 0.22);
-
-      --text-main: #0f172a;
-      --text-body: #26364f;
-      --text-muted: #64748b;
-
+      --page-bg: #101b2d;
+      --panel-bg: rgba(15, 30, 52, 0.78);
+      --panel-bg-light: rgba(255, 255, 255, 0.92);
+      --text-main: #eaf3ff;
+      --text-dark: #0f172a;
+      --text-body: #d6e4f7;
+      --text-muted: #9fb5d1;
+      --cyan: #38bdf8;
       --blue: #2563eb;
-      --cyan: #06b6d4;
-      --sky: #38bdf8;
       --purple: #7c3aed;
-
-      --blue-light: #eaf6ff;
-      --border: #dbe7f5;
-      --border-soft: #e7eef7;
-
-      --shadow-sm: 0 10px 28px rgba(15, 23, 42, 0.08);
-      --shadow-md: 0 22px 60px rgba(15, 23, 42, 0.13);
-      --glow-blue: 0 0 28px rgba(56, 189, 248, 0.34);
+      --border: rgba(125, 211, 252, 0.20);
+      --shadow: 0 24px 70px rgba(2, 8, 23, 0.34);
+      --glow: 0 0 30px rgba(56, 189, 248, 0.28);
     }
 
     html,
     body {
       margin: 0;
       background:
-        radial-gradient(circle at 85% 6%, rgba(56, 189, 248, 0.18), transparent 28%),
-        radial-gradient(circle at 52% 105%, rgba(37, 99, 235, 0.12), transparent 32%),
-        linear-gradient(180deg, #f4f8ff 0%, #eef4ff 100%);
+        radial-gradient(circle at 84% 4%, rgba(56, 189, 248, 0.18), transparent 30%),
+        radial-gradient(circle at 48% 102%, rgba(37, 99, 235, 0.15), transparent 34%),
+        linear-gradient(180deg, #111d31 0%, #0d1627 100%);
       color: var(--text-main);
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
         "Microsoft YaHei", Arial, sans-serif;
@@ -53,14 +44,14 @@
     }
 
     .sidebar {
-      width: 304px;
-      padding: 24px 18px;
+      width: 312px;
+      padding: 22px 18px;
       background:
         radial-gradient(circle at 18% 0%, rgba(56, 189, 248, 0.26), transparent 28%),
         radial-gradient(circle at 100% 100%, rgba(124, 58, 237, 0.20), transparent 30%),
         linear-gradient(180deg, var(--sidebar-bg) 0%, var(--sidebar-bg-2) 100%);
       border-right: 1px solid rgba(125, 211, 252, 0.16);
-      box-shadow: 14px 0 44px rgba(8, 17, 31, 0.20);
+      box-shadow: 14px 0 44px rgba(2, 8, 23, 0.32);
     }
 
     .sidebar::before {
@@ -68,28 +59,28 @@
       position: fixed;
       left: 0;
       top: 0;
-      width: 304px;
+      width: 312px;
       height: 100vh;
       pointer-events: none;
       background-image:
         linear-gradient(rgba(56, 189, 248, 0.055) 1px, transparent 1px),
         linear-gradient(90deg, rgba(56, 189, 248, 0.045) 1px, transparent 1px);
       background-size: 26px 26px;
-      mask-image: linear-gradient(180deg, rgba(0,0,0,0.85), rgba(0,0,0,0.25));
+      mask-image: linear-gradient(180deg, rgba(0,0,0,0.90), rgba(0,0,0,0.24));
     }
 
     .sidebar h1 {
       position: relative;
-      margin: 0 0 22px;
+      margin: 0 0 14px;
       padding: 20px 16px;
       border-radius: 20px;
       background:
         linear-gradient(135deg, rgba(15, 23, 42, 0.72), rgba(30, 64, 175, 0.30)),
-        radial-gradient(circle at 100% 0%, rgba(56, 189, 248, 0.28), transparent 42%);
+        radial-gradient(circle at 100% 0%, rgba(56, 189, 248, 0.30), transparent 44%);
       border: 1px solid rgba(125, 211, 252, 0.24);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), var(--glow-blue);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), var(--glow);
       color: #ffffff;
-      font-size: 21px;
+      font-size: 22px;
       font-weight: 850;
       line-height: 1.35;
       text-align: left;
@@ -97,29 +88,13 @@
       overflow: hidden;
     }
 
-    .sidebar h1::before {
-      content: "";
-      position: absolute;
-      right: -18px;
-      top: -22px;
-      width: 86px;
-      height: 86px;
-      border-radius: 50%;
-      background: rgba(56, 189, 248, 0.18);
-      filter: blur(2px);
-    }
-
     .sidebar h1 a {
-      position: relative;
       color: #ffffff;
       text-decoration: none;
-      z-index: 1;
     }
 
     .sidebar h1::after {
       content: "AI Operation Docs";
-      position: relative;
-      z-index: 1;
       display: block;
       margin-top: 8px;
       color: #7dd3fc;
@@ -128,10 +103,38 @@
       letter-spacing: 0.04em;
     }
 
+    .search {
+      margin: 0 0 18px;
+      padding: 0;
+      border-bottom: none;
+      position: relative;
+      z-index: 2;
+    }
+
+    .search input {
+      height: 42px;
+      padding: 0 14px;
+      border: 1px solid rgba(125, 211, 252, 0.24);
+      border-radius: 14px;
+      background: rgba(15, 23, 42, 0.48);
+      color: #e2e8f0;
+      font-size: 14px;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
+    }
+
+    .search input::placeholder {
+      color: #94a3b8;
+    }
+
+    .search input:focus {
+      border-color: #38bdf8;
+      box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.22);
+    }
+
     .sidebar-nav {
       position: relative;
       z-index: 1;
-      padding-bottom: 40px;
+      padding-bottom: 54px;
     }
 
     .sidebar ul {
@@ -149,7 +152,7 @@
       font-size: 12px;
       font-weight: 750;
       letter-spacing: 0.08em;
-      opacity: 0.78;
+      opacity: 0.80;
     }
 
     .sidebar ul li a {
@@ -175,91 +178,50 @@
     }
 
     .sidebar ul li.active > a {
-      background:
-        linear-gradient(135deg, rgba(37, 99, 235, 0.98) 0%, rgba(6, 182, 212, 0.92) 100%);
+      background: linear-gradient(135deg, rgba(37, 99, 235, 0.98) 0%, rgba(6, 182, 212, 0.92) 100%);
       color: #ffffff;
       font-weight: 750;
       border-color: rgba(186, 230, 253, 0.36);
       box-shadow: 0 14px 34px rgba(37, 99, 235, 0.32);
     }
 
-    .sidebar-toggle {
-      left: 18px;
-      bottom: 18px;
-      width: 42px;
-      height: 42px;
-      border-radius: 999px;
-      background: #0f172a;
-      border: 1px solid rgba(125, 211, 252, 0.28);
-      box-shadow: var(--glow-blue);
-    }
-
-    .sidebar-toggle span {
-      background-color: #7dd3fc;
-    }
-
-    .search {
-      margin: 0 0 18px;
-      padding: 0;
-      border-bottom: none;
-    }
-
-    .search input {
-      padding: 11px 12px;
-      border: 1px solid rgba(125, 211, 252, 0.24);
-      border-radius: 14px;
-      background: rgba(15, 23, 42, 0.42);
-      color: #e2e8f0;
-      font-size: 14px;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
-    }
-
-    .search input::placeholder {
-      color: #94a3b8;
-    }
-
-    .search input:focus {
-      border-color: #38bdf8;
-      box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.22);
-    }
-
     .content {
-      left: 304px;
+      left: 312px;
       min-height: 100vh;
       padding-top: 24px;
       background:
-        radial-gradient(circle at 92% 10%, rgba(56, 189, 248, 0.22), transparent 26%),
-        radial-gradient(circle at 52% 112%, rgba(37, 99, 235, 0.13), transparent 32%),
-        linear-gradient(180deg, #f5f9ff 0%, #eef4ff 100%);
+        radial-gradient(circle at 92% 10%, rgba(56, 189, 248, 0.19), transparent 28%),
+        radial-gradient(circle at 24% 100%, rgba(124, 58, 237, 0.12), transparent 30%),
+        linear-gradient(180deg, #111d31 0%, #0d1627 100%);
     }
 
     .content::before {
       content: "";
       position: fixed;
-      left: 304px;
+      left: 312px;
       top: 0;
       right: 0;
-      height: 260px;
+      height: 320px;
       pointer-events: none;
       background-image:
-        linear-gradient(rgba(37, 99, 235, 0.045) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(37, 99, 235, 0.035) 1px, transparent 1px);
-      background-size: 32px 32px;
-      mask-image: linear-gradient(180deg, rgba(0,0,0,0.65), transparent);
+        linear-gradient(rgba(56, 189, 248, 0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(56, 189, 248, 0.045) 1px, transparent 1px);
+      background-size: 34px 34px;
+      mask-image: linear-gradient(180deg, rgba(0,0,0,0.70), transparent);
     }
 
     .markdown-section {
       position: relative;
       z-index: 1;
-      max-width: 1000px;
+      max-width: 1040px;
       margin: 0 auto;
-      padding: 44px 54px 82px;
+      padding: 44px 56px 86px;
     }
 
     .markdown-section h1 {
       margin: 0 0 24px;
-      color: #07111f;
-      font-size: 35px;
+      color: #f8fbff;
+      font-size: 36px;
       font-weight: 850;
       line-height: 1.3;
       letter-spacing: -0.6px;
@@ -271,7 +233,7 @@
       margin-bottom: 18px;
       padding-left: 15px;
       border-bottom: none;
-      color: #0f172a;
+      color: #f8fbff;
       font-size: 24px;
       font-weight: 780;
       line-height: 1.4;
@@ -291,7 +253,7 @@
 
     .markdown-section h3 {
       margin-top: 30px;
-      color: #102033;
+      color: #ecf7ff;
       font-size: 19px;
       font-weight: 760;
     }
@@ -304,18 +266,18 @@
     }
 
     .markdown-section strong {
-      color: #07111f;
+      color: #ffffff;
       font-weight: 760;
     }
 
     .markdown-section a {
-      color: #1d4ed8;
+      color: #7dd3fc;
       font-weight: 650;
       text-decoration: none;
     }
 
     .markdown-section a:hover {
-      color: #0891b2;
+      color: #bae6fd;
       text-decoration: underline;
     }
 
@@ -324,24 +286,23 @@
       padding: 16px 20px;
       border-left: 4px solid #06b6d4;
       border-radius: 14px;
-      background: linear-gradient(135deg, #ecfeff, #eff6ff);
-      color: #164e63;
-      box-shadow: var(--shadow-sm);
+      background: rgba(14, 116, 144, 0.18);
+      color: #dff7ff;
+      box-shadow: var(--shadow);
     }
 
     .markdown-section pre {
       border-radius: 20px;
-      background:
-        linear-gradient(180deg, #0b1220 0%, #111827 100%);
+      background: linear-gradient(180deg, #08111f 0%, #0d1627 100%);
       border: 1px solid rgba(56, 189, 248, 0.18);
-      box-shadow: 0 22px 60px rgba(15, 23, 42, 0.25);
+      box-shadow: 0 22px 60px rgba(2, 8, 23, 0.36);
     }
 
     .markdown-section code {
       padding: 2px 7px;
       border-radius: 7px;
-      background: #e0f2fe;
-      color: #075985;
+      background: rgba(56, 189, 248, 0.16);
+      color: #bae6fd;
       font-size: 14px;
     }
 
@@ -358,20 +319,20 @@
       border-collapse: separate;
       border-spacing: 0;
       border-radius: 18px;
-      background: #ffffff;
-      box-shadow: var(--shadow-md);
+      background: rgba(15, 30, 52, 0.88);
+      box-shadow: var(--shadow);
       border: 1px solid rgba(56, 189, 248, 0.18);
     }
 
     .markdown-section th {
-      background: linear-gradient(180deg, #f0f7ff, #eaf6ff);
-      color: #0f172a;
+      background: rgba(56, 189, 248, 0.10);
+      color: #f8fbff;
       font-weight: 760;
     }
 
     .markdown-section td,
     .markdown-section th {
-      border: 1px solid #dbe7f5;
+      border: 1px solid rgba(125, 211, 252, 0.16);
       padding: 13px 16px;
     }
 
@@ -379,14 +340,15 @@
       position: relative;
       overflow: hidden;
       margin-bottom: 30px;
-      padding: 44px 44px;
-      border: 1px solid rgba(56, 189, 248, 0.32);
+      padding: 46px 46px;
+      border: 1px solid rgba(56, 189, 248, 0.30);
       border-radius: 30px;
       background:
-        radial-gradient(circle at 82% 16%, rgba(56, 189, 248, 0.35), transparent 28%),
-        radial-gradient(circle at 8% 88%, rgba(37, 99, 235, 0.16), transparent 26%),
-        linear-gradient(135deg, #ffffff 0%, #eef7ff 45%, #eaf4ff 100%);
-      box-shadow: 0 30px 76px rgba(37, 99, 235, 0.18);
+        radial-gradient(circle at 82% 16%, rgba(56, 189, 248, 0.22), transparent 28%),
+        radial-gradient(circle at 8% 88%, rgba(124, 58, 237, 0.18), transparent 26%),
+        linear-gradient(135deg, rgba(15, 30, 52, 0.92) 0%, rgba(9, 18, 33, 0.94) 100%);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(12px);
     }
 
     .doc-hero::before {
@@ -395,23 +357,11 @@
       inset: 0;
       opacity: 0.45;
       background-image:
-        linear-gradient(rgba(37, 99, 235, 0.08) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(37, 99, 235, 0.06) 1px, transparent 1px);
+        linear-gradient(rgba(56, 189, 248, 0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(56, 189, 248, 0.06) 1px, transparent 1px);
       background-size: 34px 34px;
       mask-image: linear-gradient(135deg, rgba(0,0,0,0.7), transparent 70%);
       pointer-events: none;
-    }
-
-    .doc-hero::after {
-      content: "";
-      position: absolute;
-      right: -58px;
-      bottom: -82px;
-      width: 236px;
-      height: 236px;
-      border-radius: 50%;
-      background: rgba(6, 182, 212, 0.13);
-      box-shadow: 0 0 80px rgba(6, 182, 212, 0.22);
     }
 
     .doc-hero .badge {
@@ -423,8 +373,8 @@
       padding: 8px 13px;
       border: 1px solid rgba(6, 182, 212, 0.32);
       border-radius: 999px;
-      background: rgba(236, 254, 255, 0.86);
-      color: #0369a1;
+      background: rgba(6, 182, 212, 0.13);
+      color: #7dd3fc;
       font-size: 13px;
       font-weight: 760;
       box-shadow: 0 0 24px rgba(56, 189, 248, 0.16);
@@ -434,8 +384,8 @@
       position: relative;
       z-index: 1;
       margin: 0 0 16px;
-      color: #07111f;
-      font-size: 40px;
+      color: #ffffff;
+      font-size: 42px;
       line-height: 1.22;
       letter-spacing: -0.9px;
     }
@@ -444,8 +394,8 @@
       position: relative;
       z-index: 1;
       margin: 0;
-      max-width: 730px;
-      color: #334155;
+      max-width: 760px;
+      color: #d6e4f7;
       font-size: 17px;
       line-height: 1.9;
     }
@@ -457,43 +407,36 @@
       margin: 28px 0;
     }
 
-    .doc-card {
+    .doc-card,
+    .doc-panel {
       position: relative;
       overflow: hidden;
-      padding: 24px;
       border: 1px solid rgba(56, 189, 248, 0.18);
-      border-radius: 24px;
-      background: var(--card-bg);
-      box-shadow: var(--shadow-sm);
-      transition: all 0.18s ease;
+      background: rgba(15, 30, 52, 0.78);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(12px);
     }
 
-    .doc-card::after {
-      content: "";
-      position: absolute;
-      top: -42px;
-      right: -42px;
-      width: 106px;
-      height: 106px;
-      border-radius: 50%;
-      background: rgba(56, 189, 248, 0.10);
+    .doc-card {
+      padding: 24px;
+      border-radius: 24px;
+      transition: all 0.18s ease;
     }
 
     .doc-card:hover {
       transform: translateY(-4px);
       border-color: rgba(6, 182, 212, 0.40);
-      box-shadow: 0 24px 62px rgba(37, 99, 235, 0.16);
+      box-shadow: 0 24px 62px rgba(37, 99, 235, 0.20);
     }
 
     .doc-card .num {
-      position: relative;
-      z-index: 1;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 36px;
+      min-width: 42px;
       height: 36px;
       margin-bottom: 14px;
+      padding: 0 10px;
       border-radius: 13px;
       background: linear-gradient(135deg, #2563eb, #06b6d4);
       color: #ffffff;
@@ -502,19 +445,15 @@
     }
 
     .doc-card h3 {
-      position: relative;
-      z-index: 1;
       margin: 0 0 10px;
-      color: #07111f;
+      color: #ffffff;
       font-size: 18px;
       font-weight: 760;
     }
 
     .doc-card p {
-      position: relative;
-      z-index: 1;
       margin: 0;
-      color: #52657d;
+      color: #b9cce4;
       font-size: 14px;
       line-height: 1.75;
     }
@@ -522,11 +461,56 @@
     .doc-panel {
       margin: 28px 0;
       padding: 30px 34px;
-      border: 1px solid rgba(56, 189, 248, 0.18);
       border-radius: 26px;
-      background: rgba(255, 255, 255, 0.92);
-      box-shadow: var(--shadow-md);
-      backdrop-filter: blur(14px);
+    }
+
+    .lang-switch {
+      position: fixed;
+      right: 26px;
+      top: 22px;
+      z-index: 30;
+      display: inline-flex;
+      gap: 6px;
+      padding: 6px;
+      border: 1px solid rgba(125, 211, 252, 0.22);
+      border-radius: 999px;
+      background: rgba(8, 17, 31, 0.78);
+      backdrop-filter: blur(12px);
+      box-shadow: var(--shadow);
+    }
+
+    .lang-switch a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 50px;
+      height: 30px;
+      border-radius: 999px;
+      color: #cbd5e1;
+      font-size: 13px;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .lang-switch a.active {
+      color: #ffffff;
+      background: linear-gradient(135deg, #2563eb, #06b6d4);
+      box-shadow: 0 10px 22px rgba(37, 99, 235, 0.28);
+    }
+
+    .sidebar-toggle {
+      left: 18px;
+      bottom: 18px;
+      width: 42px;
+      height: 42px;
+      border-radius: 999px;
+      background: #0f172a;
+      border: 1px solid rgba(125, 211, 252, 0.28);
+      box-shadow: var(--glow);
+    }
+
+    .sidebar-toggle span {
+      background-color: #7dd3fc;
     }
 
     @media screen and (max-width: 1024px) {
@@ -537,7 +521,7 @@
 
     @media screen and (max-width: 768px) {
       .sidebar {
-        width: 280px;
+        width: 282px;
       }
 
       .content {
@@ -550,7 +534,7 @@
       }
 
       .markdown-section {
-        padding: 28px 20px 64px;
+        padding: 70px 20px 64px;
       }
 
       .doc-hero {
@@ -565,11 +549,21 @@
       .doc-grid {
         grid-template-columns: 1fr;
       }
+
+      .lang-switch {
+        right: 16px;
+        top: 16px;
+      }
     }
   </style>
 </head>
 
 <body>
+  <div class="lang-switch" id="langSwitch">
+    <a href="#/" data-lang="zh">中文</a>
+    <a href="#/en/" data-lang="en">EN</a>
+  </div>
+
   <div id="app">加载中...</div>
 
   <script>
@@ -579,18 +573,37 @@
       loadSidebar: true,
       subMaxLevel: 2,
       homepage: "README.md",
-
-      // hash 模式最稳定，不需要 _redirects 文件
       routerMode: "hash",
-
       auto2top: true,
+      alias: {
+        "/en/.*/_sidebar.md": "/en/_sidebar.md",
+        "/.*/_sidebar.md": "/_sidebar.md"
+      },
       search: {
         maxAge: 86400000,
         paths: "auto",
-        placeholder: "搜索文档",
-        noData: "没有找到结果"
+        placeholder: {
+          "/en/": "Search docs",
+          "/": "搜索文档"
+        },
+        noData: {
+          "/en/": "No results",
+          "/": "没有找到结果"
+        }
       }
     };
+
+    function updateLangSwitch() {
+      var hash = window.location.hash || "#/";
+      var isEn = hash.indexOf("#/en") === 0;
+      var links = document.querySelectorAll(".lang-switch a");
+      links.forEach(function(link) {
+        link.classList.toggle("active", link.dataset.lang === (isEn ? "en" : "zh"));
+      });
+    }
+
+    window.addEventListener("hashchange", updateLangSwitch);
+    window.addEventListener("load", updateLangSwitch);
   </script>
 
   <script src="https://cdn.jsdelivr.net/npm/docsify@4"></script>

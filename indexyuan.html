@@ -1,0 +1,415 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>全栈实验室操作文档</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
+
+  <style>
+    :root {
+      --theme-color: #2563eb;
+      --bg-main: #f3f6fb;
+      --text-main: #111827;
+      --text-sub: #64748b;
+      --sidebar-text: #cbd5e1;
+      --sidebar-active: #ffffff;
+    }
+
+    html,
+    body {
+      background: var(--bg-main);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+        "Microsoft YaHei", Arial, sans-serif;
+      color: var(--text-main);
+    }
+
+    body {
+      overflow-x: hidden;
+    }
+
+    .sidebar {
+      width: 300px;
+      background:
+        radial-gradient(circle at top left, rgba(37, 99, 235, 0.38), transparent 32%),
+        linear-gradient(180deg, #0f172a 0%, #111827 100%);
+      border-right: none;
+      box-shadow: 12px 0 40px rgba(15, 23, 42, 0.16);
+      padding: 26px 18px;
+    }
+
+    .sidebar h1 {
+      margin: 0 0 26px;
+      padding: 18px 16px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.10);
+      color: #ffffff;
+      font-size: 22px;
+      font-weight: 800;
+      line-height: 1.35;
+      text-align: left;
+      letter-spacing: 0.5px;
+    }
+
+    .sidebar h1 a {
+      color: #ffffff;
+      text-decoration: none;
+    }
+
+    .sidebar h1::after {
+      content: "Operation Docs";
+      display: block;
+      margin-top: 8px;
+      font-size: 12px;
+      font-weight: 500;
+      color: #93c5fd;
+      letter-spacing: 0;
+    }
+
+    .sidebar ul {
+      margin: 0;
+      padding: 0;
+    }
+
+    .sidebar li {
+      margin: 7px 0;
+    }
+
+    .sidebar ul li a {
+      display: block;
+      padding: 12px 14px;
+      border-radius: 14px;
+      color: var(--sidebar-text);
+      font-size: 14px;
+      line-height: 1.5;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .sidebar ul li a:hover {
+      background: rgba(255, 255, 255, 0.08);
+      color: #ffffff;
+      transform: translateX(3px);
+    }
+
+    .sidebar ul li.active > a {
+      background: linear-gradient(135deg, #2563eb 0%, #38bdf8 100%);
+      color: var(--sidebar-active);
+      font-weight: 700;
+      box-shadow: 0 12px 28px rgba(37, 99, 235, 0.35);
+    }
+
+    .sidebar-toggle {
+      background: #2563eb;
+      border-radius: 999px;
+      left: 18px;
+      bottom: 18px;
+      width: 42px;
+      height: 42px;
+      box-shadow: 0 12px 30px rgba(37, 99, 235, 0.35);
+    }
+
+    .sidebar-toggle span {
+      background-color: #ffffff;
+    }
+
+    .content {
+      left: 300px;
+      background:
+        radial-gradient(circle at top right, rgba(37, 99, 235, 0.12), transparent 28%),
+        linear-gradient(180deg, #f8fafc 0%, #f3f6fb 100%);
+      min-height: 100vh;
+      padding-top: 24px;
+    }
+
+    .markdown-section {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 46px 52px 80px;
+    }
+
+    .markdown-section h1 {
+      font-size: 34px;
+      font-weight: 800;
+      color: #0f172a;
+      margin: 0 0 24px;
+      letter-spacing: -0.5px;
+    }
+
+    .markdown-section h2 {
+      font-size: 24px;
+      margin-top: 42px;
+      margin-bottom: 18px;
+      color: #111827;
+      border-bottom: none;
+      position: relative;
+      padding-left: 14px;
+    }
+
+    .markdown-section h2::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 7px;
+      width: 5px;
+      height: 22px;
+      border-radius: 999px;
+      background: linear-gradient(180deg, #2563eb, #38bdf8);
+    }
+
+    .markdown-section h3 {
+      font-size: 19px;
+      margin-top: 30px;
+      color: #1e293b;
+    }
+
+    .markdown-section p,
+    .markdown-section li {
+      font-size: 16px;
+      line-height: 1.95;
+      color: #334155;
+    }
+
+    .markdown-section strong {
+      color: #0f172a;
+      font-weight: 700;
+    }
+
+    .markdown-section a {
+      color: #2563eb;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .markdown-section a:hover {
+      text-decoration: underline;
+    }
+
+    .markdown-section blockquote {
+      border-left: 4px solid #2563eb;
+      background: #eff6ff;
+      color: #1e3a8a;
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin: 24px 0;
+    }
+
+    .markdown-section pre {
+      border-radius: 18px;
+      background: #0f172a;
+      box-shadow: 0 18px 50px rgba(15, 23, 42, 0.22);
+    }
+
+    .markdown-section code {
+      border-radius: 7px;
+      background: #eaf2ff;
+      color: #1d4ed8;
+      padding: 2px 7px;
+      font-size: 14px;
+    }
+
+    .markdown-section pre code {
+      background: transparent;
+      color: #e5e7eb;
+      padding: 0;
+    }
+
+    .markdown-section table {
+      display: table;
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      overflow: hidden;
+      border-radius: 16px;
+      box-shadow: 0 14px 36px rgba(15, 23, 42, 0.08);
+      background: #ffffff;
+    }
+
+    .markdown-section th {
+      background: #f1f5f9;
+      color: #0f172a;
+      font-weight: 700;
+    }
+
+    .markdown-section td,
+    .markdown-section th {
+      border: 1px solid #e5e7eb;
+      padding: 13px 16px;
+    }
+
+    .doc-hero {
+      position: relative;
+      overflow: hidden;
+      border-radius: 28px;
+      padding: 42px 44px;
+      margin-bottom: 34px;
+      color: #ffffff;
+      background:
+        radial-gradient(circle at 15% 20%, rgba(96, 165, 250, 0.55), transparent 26%),
+        radial-gradient(circle at 90% 10%, rgba(56, 189, 248, 0.40), transparent 24%),
+        linear-gradient(135deg, #0f172a 0%, #1d4ed8 58%, #0284c7 100%);
+      box-shadow: 0 26px 70px rgba(37, 99, 235, 0.30);
+    }
+
+    .doc-hero::after {
+      content: "";
+      position: absolute;
+      width: 240px;
+      height: 240px;
+      right: -70px;
+      bottom: -90px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    .doc-hero .badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.14);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      font-size: 13px;
+      color: #dbeafe;
+      margin-bottom: 18px;
+    }
+
+    .doc-hero h1 {
+      color: #ffffff;
+      font-size: 38px;
+      margin: 0 0 16px;
+      line-height: 1.25;
+    }
+
+    .doc-hero p {
+      color: #dbeafe;
+      font-size: 17px;
+      max-width: 720px;
+      line-height: 1.9;
+      margin: 0;
+    }
+
+    .doc-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      margin: 30px 0;
+    }
+
+    .doc-card {
+      background: rgba(255, 255, 255, 0.86);
+      border: 1px solid rgba(226, 232, 240, 0.9);
+      border-radius: 22px;
+      padding: 24px;
+      box-shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
+      backdrop-filter: blur(12px);
+      transition: all 0.2s ease;
+    }
+
+    .doc-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 24px 60px rgba(15, 23, 42, 0.12);
+      border-color: #bfdbfe;
+    }
+
+    .doc-card .num {
+      display: inline-flex;
+      width: 34px;
+      height: 34px;
+      align-items: center;
+      justify-content: center;
+      border-radius: 12px;
+      background: #eff6ff;
+      color: #2563eb;
+      font-weight: 800;
+      margin-bottom: 14px;
+    }
+
+    .doc-card h3 {
+      margin: 0 0 10px;
+      font-size: 18px;
+      color: #0f172a;
+    }
+
+    .doc-card p {
+      margin: 0;
+      font-size: 14px;
+      line-height: 1.75;
+      color: #64748b;
+    }
+
+    .doc-panel {
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 28px 32px;
+      border: 1px solid #e5e7eb;
+      box-shadow: 0 18px 48px rgba(15, 23, 42, 0.08);
+      margin: 28px 0;
+    }
+
+    @media screen and (max-width: 1024px) {
+      .doc-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media screen and (max-width: 768px) {
+      .sidebar {
+        width: 280px;
+      }
+
+      .content {
+        left: 0;
+        padding-top: 0;
+      }
+
+      .markdown-section {
+        padding: 28px 20px 64px;
+      }
+
+      .doc-hero {
+        padding: 32px 26px;
+        border-radius: 22px;
+      }
+
+      .doc-hero h1 {
+        font-size: 30px;
+      }
+
+      .doc-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">加载中...</div>
+
+  <script>
+    window.$docsify = {
+      name: "全栈实验室操作文档",
+      repo: "",
+      loadSidebar: true,
+      subMaxLevel: 2,
+      homepage: "README.md",
+      routerMode: "hash",
+      auto2top: true,
+      search: {
+        maxAge: 86400000,
+        paths: "auto",
+        placeholder: "搜索文档",
+        noData: "没有找到结果"
+      }
+    };
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/docsify@4"></script>
+  <script src="https://cdn.jsdelivr.net/npm/docsify@4/lib/plugins/search.min.js"></script>
+</body>
+</html>

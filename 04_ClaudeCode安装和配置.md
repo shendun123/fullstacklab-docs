@@ -34,7 +34,7 @@ claude --version
 推荐优先使用 ccswitch 导入配置。如果需要手动配置，准备：
 
 - API Key：从 全栈实验室 后台获取
-- Base URL：`https://fullstacklab.xyz`
+- Base URL：`https://api.fullstacklab.xyz`
 
 Claude Code 配置文件常见路径：
 
@@ -51,7 +51,7 @@ macOS/Linux: ~/.claude/settings.json
 {
   "env": {
     "ANTHROPIC_API_KEY": "sk-xxxxxxxxxxxxxxxx",
-    "ANTHROPIC_BASE_URL": "https://fullstacklab.xyz",
+    "ANTHROPIC_BASE_URL": "https://api.fullstacklab.xyz",
     "CLAUDE_AUTOCOMPACT_PCT_OVERRIDE": "78"
   }
 }
