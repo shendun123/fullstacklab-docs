@@ -1,8 +1,18 @@
 # Nano Banana 图像生成
 
-Nano Banana 使用任务式接口：先创建任务，再根据任务 ID 轮询结果。支持文生图和图生图。
+Nano Banana 是**异步任务式图像生成接口**：先创建任务，再根据任务 ID 轮询结果。支持文生图和图生图。
 
-## 创建任务
+## 一、异步任务式流程
+
+```text
+1. POST 创建生图任务
+2. 从返回中读取 task_id 或 id
+3. GET 查询任务状态
+4. status=completed 时读取 url / video_url / image_url / output
+5. 下载图片
+```
+
+## 二、创建任务
 
 ```text
 POST https://fullstacklab.xyz/v1/videos
@@ -35,7 +45,7 @@ Content-Type: application/json
 | 9:16 | 短视频封面、竖屏图 |
 | 16:9 | 官网 Banner、横版广告图 |
 
-## 文生图请求示例
+## 三、文生图创建任务示例
 
 ```python
 import requests
@@ -55,14 +65,21 @@ headers = {
 }
 
 res = requests.post(BASE_URL, headers=headers, json=payload, timeout=60)
+
+print("状态码:", res.status_code)
+print("返回内容:", res.text)
+
 res.raise_for_status()
 task = res.json()
 
 task_id = task.get("task_id") or task.get("id")
 print("任务 ID:", task_id)
+
+if not task_id:
+    raise Exception(f"返回结果中没有 task_id/id: {task}")
 ```
 
-## 图生图请求示例
+## 四、图生图创建任务示例
 
 ```python
 payload = {
@@ -75,35 +92,85 @@ payload = {
 
 图生图前，参考图 URL 必须是公网可访问的图片直链，并且响应 `Content-Type` 应该是 `image/*`。
 
-## 轮询任务
+## 五、轮询任务结果
 
 ```python
 import time
 import requests
 
-def wait_result(task_id):
+API_KEY = "YOUR_API_KEY"
+
+def wait_result(task_id, interval=3, timeout=420):
     url = f"https://fullstacklab.xyz/v1/videos/{task_id}"
-    headers = {"Authorization": "Bearer YOUR_API_KEY"}
+    headers = {
+        "Authorization": f"Bearer {API_KEY}"
+    }
+
+    start_time = time.time()
 
     while True:
         res = requests.get(url, headers=headers, timeout=60)
+
+        print("查询状态码:", res.status_code)
+        print("查询返回:", res.text)
+
         res.raise_for_status()
         data = res.json()
 
-        status = data.get("status")
+        status = str(data.get("status", "")).lower()
         progress = data.get("progress", 0)
+
         print("当前状态:", status, "进度:", progress)
 
         if status == "completed":
-            return data.get("url") or data.get("video_url")
+            image_url = (
+                data.get("url")
+                or data.get("video_url")
+                or data.get("image_url")
+                or data.get("output")
+            )
+
+            if not image_url:
+                raise Exception(f"任务完成但没有返回图片地址: {data}")
+
+            return image_url, data
 
         if status == "failed":
-            raise Exception(data.get("error") or data)
+            error = data.get("error", {})
+            message = error.get("message") if isinstance(error, dict) else error
+            raise Exception(message or data.get("fail_reason") or data)
 
-        time.sleep(3)
+        if status not in ["queued", "processing", "in_progress"]:
+            print("未知状态，继续轮询:", status)
+
+        if time.time() - start_time > timeout:
+            raise TimeoutError(f"任务超时，超过 {timeout} 秒仍未完成")
+
+        time.sleep(interval)
 ```
 
-## 状态说明
+## 六、下载图片
+
+```python
+from pathlib import Path
+import time
+import requests
+
+def download_image(image_url, save_dir="./banana_images"):
+    save_dir = Path(save_dir)
+    save_dir.mkdir(parents=True, exist_ok=True)
+
+    res = requests.get(image_url, timeout=120)
+    res.raise_for_status()
+
+    save_path = save_dir / f"banana_{int(time.time())}.png"
+    save_path.write_bytes(res.content)
+
+    print("下载完成:", save_path)
+    return save_path
+```
+
+## 七、状态说明
 
 | 状态 | 说明 |
 | --- | --- |
@@ -113,8 +180,19 @@ def wait_result(task_id):
 | completed | 已完成 |
 | failed | 失败 |
 
-## 使用建议
+## 八、完整调用顺序
 
+```python
+task_id = create_task(...)
+image_url, raw_data = wait_result(task_id)
+download_image(image_url)
+```
+
+## 九、使用建议
+
+- Nano Banana 是异步任务式接口，不是请求后立即返回图片。
 - 先跑单张测试，确认模型、比例、Key、网络都正常。
 - 全量测试会产生多次计费，例如 4 个模型 × 4 个比例 = 16 次任务。
+- 轮询间隔建议 3 秒左右，任务总超时建议 420 秒左右。
 - 下载图片时建议按模型、比例、时间自动命名，方便归档。
+- 图生图前先检查参考图 URL 是否可公网访问。
