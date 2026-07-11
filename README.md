@@ -3,7 +3,7 @@
   <h1>全栈实验室操作文档</h1>
   <p>
     本文档用于帮助用户快速完成购买、工具配置、Claude Code、Codex、Cherry Studio、接口调用以及常见问题排查。
-    左侧目录已拆分为常见问题和接口文档，方便快速定位。
+    左侧目录已拆分为工具配置、接口文档和常见问题，方便快速定位。
   </p>
 </div>
 
@@ -16,14 +16,14 @@
 
   <div class="doc-card">
     <div class="num">02</div>
-    <h3>常见问题</h3>
-    <p>集中查看配置不生效、鉴权失败、连接失败、任务超时等问题。</p>
+    <h3>接口文档</h3>
+    <p>按 Chat、Responses、Anthropic、Gemini、图像、视频等接口拆分查看。</p>
   </div>
 
   <div class="doc-card">
     <div class="num">03</div>
-    <h3>接口文档</h3>
-    <p>按 Chat、Responses、Anthropic、Gemini、图像、视频等接口拆分查看。</p>
+    <h3>常见问题</h3>
+    <p>集中查看配置不生效、鉴权失败、连接失败、任务超时等问题。</p>
   </div>
 </div>
 
@@ -35,8 +35,9 @@
 2. [Cherry Studio 教程](03_CherryStudio教程.md)
 3. [Claude Code 安装和配置](04_ClaudeCode安装和配置.md)
 4. [Codex 安装和配置](05_Codex安装和配置.md)
-5. [常见问题](09_常见问题.md)
-6. [接口文档](10_接口文档.md)
+5. [接口文档](10_接口文档.md)
+6. [常见问题](09_常见问题.md)
+
 
 </div>
 
