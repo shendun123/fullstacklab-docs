@@ -45,6 +45,8 @@ Content-Type: application/json
 | 9:16 | 短视频封面、竖屏图 |
 | 16:9 | 官网 Banner、横版广告图 |
 
+参考图支持 JPEG、PNG、WEBP，最多 5 张，单张建议不超过 10 MB。URL 必须是公网可访问的图片直链；Base64 必须包含完整 Data URL 前缀。Pro 模型的分辨率由模型名后缀决定，不需要额外传 `size`。
+
 ## 三、文生图创建任务示例
 
 ### Shell

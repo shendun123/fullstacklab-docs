@@ -25,9 +25,9 @@ anthropic-version: 2023-06-01
 | 模型 | 说明 |
 | --- | --- |
 | claude-sonnet-4-20250514 | Claude Sonnet 4 示例模型 |
-| claude-3-opus-20240229 | Apifox 示例中的 Claude 3 Opus 模型名 |
+| claude-3-opus-20240229 | 示例中的 Claude 3 Opus 模型名 |
 
-Apifox 文档中该接口支持 `system`、`tools`、`tool_choice`、`thinking`、`metadata`、图片内容块和工具结果内容块。
+文档中该接口支持 `system`、`tools`、`tool_choice`、`thinking`、`metadata`、图片内容块和工具结果内容块。
 
 ## Shell 示例
 

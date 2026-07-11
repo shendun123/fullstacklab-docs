@@ -49,7 +49,7 @@ API Key：填写你在全栈实验室后台创建的真实 Key
 推荐填写：
 
 ```text
-Base URL: https://api.fullstacklab.xyz
+Base URL: https://fullstacklab.xyz
 API Key: 使用 全栈实验室 后台生成的 Key
 Organization: 如无特殊要求可留空
 Default Model: 填写后台可用模型名

@@ -5,17 +5,28 @@
   - [Claude Code 安装和配置](/04_ClaudeCode安装和配置.md)
   - [Codex 安装和配置](/05_Codex安装和配置.md)
 
-- 常见问题
-  - [常见问题](/09_常见问题.md)
-
 - 接口文档
   - [接口文档总览](/10_接口文档.md)
-  - [OpenAI Chat Completions](/10_01_OpenAI_ChatCompletions.md)
-  - [OpenAI Responses API](/10_02_OpenAI_Responses.md)
-  - [Anthropic Messages API](/10_03_Anthropic_Messages.md)
-  - [Gemini GenerateContent](/10_04_Gemini_GenerateContent.md)
-  - [GPT Image 2 图像生成](/10_05_GPTImage2_图像生成.md)
-  - [Nano Banana 图像生成](/10_06_NanoBanana_图像生成.md)
-  - [视频生成](/10_07_VeoFast_视频生成.md)
-  - [接口错误与排查](/10_08_接口错误与排查.md)
-  - [SDK 示例](/10_09_SDK示例.md)
+  - OpenAI
+    - [Chat Completions 文本](/10_01_OpenAI_ChatCompletions.md)
+    - [Responses 文本](/10_02_OpenAI_Responses.md)
+    - [GPT Image 2 生图](/10_05_GPTImage2_图像生成.md)
+    - [Sora 生视频](/10_07_OpenAI_Sora视频生成.md)
+  - Gemini
+    - [GenerateContent 文本与多模态](/10_04_Gemini_GenerateContent.md)
+    - [Gemini 原生生图](/10_12_Gemini原生图像生成.md)
+    - [Nano Banana 生图](/10_06_NanoBanana_图像生成.md)
+    - [Veo / Omni 生视频](/10_09_Gemini_VeoOmni视频生成.md)
+  - Grok
+    - [Grok 生视频](/10_13_Grok视频生成.md)
+  - HappyHorse
+    - [HappyHorse 生视频](/10_14_HappyHorse视频生成.md)
+  - Seedance
+    - [Seedance 生视频](/10_10_Seedance视频生成.md)
+  - Vidu
+    - [Vidu 生视频](/10_11_Vidu视频生成.md)
+  - Claude
+    - [Messages 文本与工具调用](/10_03_Anthropic_Messages.md)
+
+- 常见问题
+  - [常见问题](/09_常见问题.md)

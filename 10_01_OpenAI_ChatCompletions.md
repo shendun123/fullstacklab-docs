@@ -19,7 +19,7 @@ Content-Type: application/json
 
 `model` 以后台实际可用模型和 `/v1/models` 返回结果为准。常见可用于 Chat Completions 的模型包括 OpenAI 兼容聊天模型、推理模型，以及后台开放的多模态模型。
 
-Apifox 文档中该接口支持的主要能力包括：
+文档中该接口支持的主要能力包括：
 
 - 普通文本对话
 - 流式输出：`stream`

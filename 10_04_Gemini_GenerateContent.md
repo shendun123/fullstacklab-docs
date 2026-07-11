@@ -1,4 +1,4 @@
-# Gemini GenerateContent
+# Gemini 文本与多模态
 
 适合 Gemini 兼容协议调用。
 
@@ -34,9 +34,9 @@ Content-Type: application/json
 | 模型 | 说明 |
 | --- | --- |
 | gemini-2.5-pro | 文本生成示例模型 |
-| gemini-3-flash-preview | Apifox 媒体识别示例模型 |
+| gemini-3-flash-preview | 媒体识别示例模型 |
 
-支持文本、图片、PDF、音频、视频等内容块。媒体识别接口建议使用 `inlineData` 传 base64；Apifox 标注该媒体识别请求不支持 `fileData.fileUri` 或 File API。
+支持文本、图片、PDF、音频、视频等内容块。媒体识别接口建议使用 `inlineData` 传 base64；标注该媒体识别请求不支持 `fileData.fileUri` 或 File API。
 
 ## Shell 示例
 
