@@ -15,7 +15,21 @@ Authorization: Bearer YOUR_API_KEY
 Content-Type: application/json
 ```
 
-## 请求示例
+## 支持模型和能力
+
+`model` 以后台实际可用模型和 `/v1/models` 返回结果为准。Responses API 适合 Codex、推理模型、多轮续接和工具调用场景。
+
+常用能力包括：
+
+- 字符串或消息数组输入：`input`
+- 系统指令：`instructions`
+- 工具调用：`tools`、`tool_choice`
+- 推理配置：`reasoning.effort`
+- 多轮续接：`previous_response_id`
+- 截断策略：`truncation`
+- 流式输出：`stream`
+
+## Shell 示例
 
 ```bash
 curl -X POST "https://fullstacklab.xyz/v1/responses" \
@@ -25,6 +39,65 @@ curl -X POST "https://fullstacklab.xyz/v1/responses" \
     "model": "gpt-5.5",
     "input": "你好，请回复一句测试"
   }'
+```
+
+## Python 示例
+
+```python
+import requests
+
+api_key = "YOUR_API_KEY"
+payload = {
+    "model": "gpt-5.5",
+    "input": "你好，请回复一句测试",
+    "reasoning": {"effort": "medium"}
+}
+
+res = requests.post(
+    "https://fullstacklab.xyz/v1/responses",
+    headers={
+        "Authorization": f"Bearer {api_key}",
+        "Content-Type": "application/json",
+    },
+    json=payload,
+    timeout=60,
+)
+res.raise_for_status()
+print(res.text)
+```
+
+## Java 示例
+
+```java
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+
+public class ResponsesExample {
+    public static void main(String[] args) throws Exception {
+        String apiKey = "YOUR_API_KEY";
+        String body = """
+            {
+              "model": "gpt-5.5",
+              "input": "你好，请回复一句测试",
+              "reasoning": {"effort": "medium"}
+            }
+            """;
+
+        HttpRequest request = HttpRequest.newBuilder()
+            .uri(URI.create("https://fullstacklab.xyz/v1/responses"))
+            .header("Authorization", "Bearer " + apiKey)
+            .header("Content-Type", "application/json")
+            .POST(HttpRequest.BodyPublishers.ofString(body))
+            .build();
+
+        HttpResponse<String> response = HttpClient.newHttpClient()
+            .send(request, HttpResponse.BodyHandlers.ofString());
+
+        System.out.println(response.body());
+    }
+}
 ```
 
 ## 常用参数

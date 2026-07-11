@@ -32,7 +32,7 @@ codex --version
 推荐优先使用 ccswitch 导入配置。如果手动配置，需要准备：
 
 - API Key：从 全栈实验室 后台获取
-- Base URL：`https://api.fullstacklab.xyz`
+- Base URL：`https://fullstacklab.xyz`
 - 模型名：从后台模型列表获取
 
 不要把 API Key 写进项目仓库、README、截图或公开聊天记录。

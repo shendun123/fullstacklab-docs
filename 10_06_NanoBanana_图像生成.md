@@ -47,6 +47,21 @@ Content-Type: application/json
 
 ## 三、文生图创建任务示例
 
+### Shell
+
+```bash
+curl -X POST "https://fullstacklab.xyz/v1/videos" \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "nano_banana_pro-4K",
+    "prompt": "一个可爱的中国女孩，真实摄影风格，自然光线，干净背景，4K超清细节，商业摄影质感",
+    "aspect_ratio": "9:16"
+  }'
+```
+
+### Python
+
 ```python
 import requests
 
@@ -77,6 +92,40 @@ print("任务 ID:", task_id)
 
 if not task_id:
     raise Exception(f"返回结果中没有 task_id/id: {task}")
+```
+
+### Java
+
+```java
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+
+public class NanoBananaExample {
+    public static void main(String[] args) throws Exception {
+        String apiKey = "YOUR_API_KEY";
+        String body = """
+            {
+              "model": "nano_banana_pro-4K",
+              "prompt": "一个可爱的中国女孩，真实摄影风格，自然光线，干净背景，4K超清细节，商业摄影质感",
+              "aspect_ratio": "9:16"
+            }
+            """;
+
+        HttpRequest request = HttpRequest.newBuilder()
+            .uri(URI.create("https://fullstacklab.xyz/v1/videos"))
+            .header("Authorization", "Bearer " + apiKey)
+            .header("Content-Type", "application/json")
+            .POST(HttpRequest.BodyPublishers.ofString(body))
+            .build();
+
+        HttpResponse<String> response = HttpClient.newHttpClient()
+            .send(request, HttpResponse.BodyHandlers.ofString());
+
+        System.out.println(response.body());
+    }
+}
 ```
 
 ## 四、图生图创建任务示例
