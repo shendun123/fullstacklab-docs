@@ -14,7 +14,7 @@
     - [Sora 生视频](/10_07_OpenAI_Sora视频生成.md)
   - Gemini
     - [GenerateContent 文本与多模态](/10_04_Gemini_GenerateContent.md)
-    - [Gemini 原生生图](/10_12_Gemini原生图像生成.md)
+    - [Gemini 生图](/10_12_Gemini图像生成.md)
     - [Nano Banana 生图](/10_06_NanoBanana_图像生成.md)
     - [Veo / Omni 生视频](/10_09_Gemini_VeoOmni视频生成.md)
   - Grok
